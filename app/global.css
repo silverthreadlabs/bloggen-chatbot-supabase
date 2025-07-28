@@ -145,3 +145,10 @@ body {
 ::-webkit-scrollbar-button {
     display: none;
 }
+
+/* Hide footer on chat page */
+.chat-page-wrapper ~ main > footer,
+.chat-page-wrapper ~ footer,
+.chat-page-wrapper footer {
+  display: none !important;
+}

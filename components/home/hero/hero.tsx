@@ -214,7 +214,10 @@ export default function Hero() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, delay: 0.5 }}>
-                                
+                                  <Link
+                                href='/chat'
+                                rel='noopener noreferrer'
+                            >
                                 <Button
                                     className='group relative overflow-hidden font-bold shadow-2xl hover:shadow-primary-solid/25 flex items-center gap-4 px-6 py-6 rounded-2xl text-lg transition-all duration-300 whitespace-nowrap'
                                     color='primary'
@@ -227,12 +230,14 @@ export default function Hero() {
                                         style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)' }}
                                     />
                                     <FaRocket className='w-5 h-5 relative z-10' />
-                                    <span className='relative z-10'>Start Chat</span>
+                                    <span className='relative z-10'>Start Chatbot</span>
                                     <FaArrowRight className='w-5 h-5 transition-transform group-hover:translate-x-2 relative z-10' />
                                 </Button>
+                            </Link>
+
 
                                  <Link
-                                href='https://github.com/silverthreadlabs/bloggen-saas-starter-supabase'
+                                href='https://github.com/silverthreadlabs/bloggen-chatbot-supabase'
                                 target='_blank'
                                 rel='noopener noreferrer'
                             >

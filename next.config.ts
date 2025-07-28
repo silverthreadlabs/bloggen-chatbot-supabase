@@ -33,7 +33,7 @@ const config: NextConfig = {
                             "style-src 'self' 'unsafe-inline' https://embed.cal.com https://app.cal.com https://*.cal.com",
                             "img-src 'self' data: blob: https: http:",
                             "font-src 'self' data: https:",
-                            "connect-src 'self' https://zuiaogeifwgiaqiodpuu.supabase.co https://embed.cal.com https://app.cal.com https://*.cal.com https://api.stripe.com https://www.google-analytics.com https://stats.g.doubleclick.net wss:",
+                            "connect-src 'self' https://mpcquuzqodeormfecwlf.supabase.co https://embed.cal.com https://app.cal.com https://*.cal.com https://api.stripe.com https://www.google-analytics.com https://stats.g.doubleclick.net wss:",
                             "frame-src 'self' https://embed.cal.com https://app.cal.com https://*.cal.com https://js.stripe.com https://checkout.stripe.com",
                             "frame-ancestors 'self'",
                             "object-src 'none'",

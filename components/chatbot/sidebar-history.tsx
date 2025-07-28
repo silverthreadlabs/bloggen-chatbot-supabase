@@ -125,7 +125,7 @@ export function SidebarHistory() {
           }
         });
         if (deleteId === id) {
-          router.push('/');
+          router.push('/chat'); // Open a new chat after deletion
         }
       }
     } catch (err) {

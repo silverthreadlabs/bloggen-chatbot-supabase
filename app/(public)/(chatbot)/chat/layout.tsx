@@ -16,7 +16,7 @@ export default async function Layout({
   const isCollapsed = cookieStore.get('sidebar:state')?.value !== 'true';
 
   return (
-    <>
+    <div className="chat-page-wrapper">
       <Script
         src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"
         strategy="beforeInteractive"
@@ -29,6 +29,6 @@ export default async function Layout({
           </div>
         </SidebarProvider>
       </DataStreamProvider>
-    </>
+    </div>
   );
 }
