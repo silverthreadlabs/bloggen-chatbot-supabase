@@ -5,7 +5,7 @@ import { supabase } from '@/utils/supabase/client';
 import { Chat } from '@/components/chatbot/chat';
 import { convertToUIMessages } from '@/lib/utils';
 import { DEFAULT_CHAT_MODEL } from '@/lib/ai/models';
-import type { DBMessage } from '@/lib/db/schema';
+import type { DBMessage } from '@/types_db';
 
 export default function ChatPage() {
   const { id } = useParams();

@@ -2,8 +2,9 @@ import {
   getChatById,
   getMessagesByChatId,
   getStreamIdsByChatId,
-} from '@/lib/db/queries';
-import type { Chat } from '@/lib/db/schema';
+} from '@/db/queries';
+import type { Tables } from '@/types_db';
+type Chat = Tables<'chats'>;
 import { ChatSDKError } from '@/lib/errors';
 import type { ChatMessage } from '@/lib/types';
 import { createUIMessageStream, JsonToSseTransformStream } from 'ai';
@@ -37,8 +38,8 @@ export async function GET(
     chat = {
       id: chatData.id,
       title: chatData.title,
-      createdAt: new Date(chatData.created_at),
-      userId: chatData.user_id,
+      created_at: new Date(chatData.created_at).toISOString(),
+      user_id: chatData.user_id,
       visibility: chatData.visibility as 'public' | 'private',
     };
   } catch {

@@ -1,5 +1,5 @@
 import { PreviewMessage, ThinkingMessage } from './message';
-import type { Vote } from '@/lib/db/schema';
+import type { Vote } from '@/types_db';
 import { memo } from 'react';
 import equal from 'fast-deep-equal';
 import type { UIArtifact } from './artifact';
@@ -52,7 +52,7 @@ function PureArtifactMessages({
           isLoading={status === 'streaming' && index === messages.length - 1}
           vote={
             votes
-              ? votes.find((vote) => vote.messageId === message.id)
+              ? votes.find((vote) => vote.message_id === message.id)
               : undefined
           }
           setMessages={setMessages}

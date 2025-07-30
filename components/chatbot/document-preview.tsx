@@ -11,7 +11,7 @@ import {
 import type { ArtifactKind, UIArtifact } from './artifact';
 import { FileIcon, FullscreenIcon, ImageIcon, LoaderIcon } from './icons';
 import { cn, fetcher } from '@/lib/utils';
-import type { Document } from '@/lib/db/schema';
+import type { Document } from '@/types_db';
 import { InlineDocumentSkeleton } from './document-skeleton';
 import useSWR from 'swr';
 import { Editor } from './text-editor';
@@ -89,11 +89,11 @@ export function DocumentPreview({
     : artifact.status === 'streaming'
       ? {
           title: artifact.title,
-          kind: artifact.kind,
+          kind: artifact.kind as ArtifactKind,
           content: artifact.content,
           id: artifact.documentId,
-          createdAt: new Date(),
-          userId: 'noop',
+          created_at: new Date().toISOString(),
+          user_id: 'noop',
         }
       : null;
 
@@ -108,7 +108,7 @@ export function DocumentPreview({
       />
       <DocumentHeader
         title={document.title}
-        kind={document.kind}
+        kind={document.kind as ArtifactKind}
         isStreaming={artifact.status === 'streaming'}
       />
       <DocumentContent document={document} />

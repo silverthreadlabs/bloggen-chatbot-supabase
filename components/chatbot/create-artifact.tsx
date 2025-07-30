@@ -1,4 +1,5 @@
-import type { Suggestion } from '@/lib/db/schema';
+import type { Tables } from '@/types_db';
+type Suggestion = Tables<'suggestions'>;
 import type { UseChatHelpers } from '@ai-sdk/react';
 import type { ComponentType, Dispatch, ReactNode, SetStateAction } from 'react';
 import type { UIArtifact } from './artifact';

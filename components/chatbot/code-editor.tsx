@@ -6,7 +6,8 @@ import { python } from '@codemirror/lang-python';
 import { oneDark } from '@codemirror/theme-one-dark';
 import { basicSetup } from 'codemirror';
 import React, { memo, useEffect, useRef } from 'react';
-import { Suggestion } from '@/lib/db/schema';
+import type { Tables } from '@/types_db';
+type Suggestion = Tables<'suggestions'>;
 
 type EditorProps = {
   content: string;

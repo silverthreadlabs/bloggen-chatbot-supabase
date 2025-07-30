@@ -13,24 +13,11 @@ import {
   type SQL,
 } from 'drizzle-orm';
 
-import {
-  user,
-  chat,
-  type User,
-  document,
-  type Suggestion,
-  suggestion,
-  message,
-  vote,
-  type DBMessage,
-  type Chat,
-  stream,
-} from './schema';
+import type { Tables } from '@/types_db';
+type Suggestion = Tables<'suggestions'>;
 import type { ArtifactKind } from '@/components/chatbot/artifact';
-import { generateUUID } from '../utils';
-import { generateHashedPassword } from './utils';
 import type { VisibilityType } from '@/components/chatbot/visibility-selector';
-import { ChatSDKError } from '../errors';
+import { ChatSDKError } from '@/lib/errors';
 import { supabase } from '@/utils/supabase/client';
 
 // Optionally, if not using email/pass login, you can

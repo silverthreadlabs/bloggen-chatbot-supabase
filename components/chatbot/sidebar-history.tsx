@@ -21,7 +21,7 @@ import {
   SidebarMenu,
   useSidebar,
 } from '@/components/botui/sidebar';
-import type { Chat } from '@/lib/db/schema';
+import type { Chat } from '@/types_db';
 import { fetcher } from '@/lib/utils';
 import { ChatItem } from './sidebar-history-item';
 import useSWRInfinite from 'swr/infinite';
@@ -50,7 +50,7 @@ const groupChatsByDate = (chats: Chat[]): GroupedChats => {
 
   return chats.reduce(
     (groups, chat) => {
-      const chatDate = new Date(chat.createdAt);
+      const chatDate = new Date(chat.created_at);
 
       if (isToday(chatDate)) {
         groups.today.push(chat);

@@ -1,7 +1,7 @@
 import { useSWRConfig } from 'swr';
 import { useCopyToClipboard } from 'usehooks-ts';
 
-import type { Vote } from '@/lib/db/schema';
+import type { Vote } from '@/types_db';
 
 import { CopyIcon, ThumbDownIcon, ThumbUpIcon } from './icons';
 import { Button } from '@/components/ui/button';
@@ -69,14 +69,14 @@ return;
             <Button
               data-testid="message-upvote"
               className="py-1 px-2 h-fit text-muted-foreground !pointer-events-auto"
-              disabled={vote?.isUpvoted}
+              disabled={vote?.is_upvoted}
               variant="outline"
               onClick={async () => {
                 const upvote = fetch('/api/vote', {
                   method: 'PATCH',
                   body: JSON.stringify({
-                    chatId,
-                    messageId: message.id,
+                    chat_id: chatId,
+                    message_id: message.id,
                     type: 'up',
                   }),
                 });
@@ -85,20 +85,20 @@ return;
                   loading: 'Upvoting Response...',
                   success: () => {
                     mutate<Array<Vote>>(
-                      `/api/vote?chatId=${chatId}`,
+                      `/api/vote?chat_id=${chatId}`,
                       (currentVotes) => {
                         if (!currentVotes) return [];
 
                         const votesWithoutCurrent = currentVotes.filter(
-                          (vote) => vote.messageId !== message.id,
+                          (vote) => vote.message_id !== message.id,
                         );
 
                         return [
                           ...votesWithoutCurrent,
                           {
-                            chatId,
-                            messageId: message.id,
-                            isUpvoted: true,
+                            chat_id: chatId,
+                            message_id: message.id,
+                            is_upvoted: true,
                           },
                         ];
                       },
@@ -123,13 +123,13 @@ return;
               data-testid="message-downvote"
               className="py-1 px-2 h-fit text-muted-foreground !pointer-events-auto"
               variant="outline"
-              disabled={vote && !vote.isUpvoted}
+              disabled={vote && !vote.is_upvoted}
               onClick={async () => {
                 const downvote = fetch('/api/vote', {
                   method: 'PATCH',
                   body: JSON.stringify({
-                    chatId,
-                    messageId: message.id,
+                    chat_id: chatId,
+                    message_id: message.id,
                     type: 'down',
                   }),
                 });
@@ -138,20 +138,20 @@ return;
                   loading: 'Downvoting Response...',
                   success: () => {
                     mutate<Array<Vote>>(
-                      `/api/vote?chatId=${chatId}`,
+                      `/api/vote?chat_id=${chatId}`,
                       (currentVotes) => {
                         if (!currentVotes) return [];
 
                         const votesWithoutCurrent = currentVotes.filter(
-                          (vote) => vote.messageId !== message.id,
+                          (vote) => vote.message_id !== message.id,
                         );
 
                         return [
                           ...votesWithoutCurrent,
                           {
-                            chatId,
-                            messageId: message.id,
-                            isUpvoted: false,
+                            chat_id: chatId,
+                            message_id: message.id,
+                            is_upvoted: false,
                           },
                         ];
                       },

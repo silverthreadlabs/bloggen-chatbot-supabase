@@ -1,6 +1,6 @@
 import { tool, type UIMessageStreamWriter } from 'ai';
 import { z } from 'zod';
-import { getDocumentById } from '@/lib/db/queries';
+import { getDocumentById } from '@/db/queries';
 import { documentHandlersByArtifactKind } from '@/lib/artifacts/server';
 import type { ChatMessage } from '@/lib/types';
 
@@ -33,8 +33,8 @@ export const updateDocument = ({ session, dataStream }: UpdateDocumentProps) =>
         title: (document as any).title,
         content: (document as any).content,
         kind: (document as any).kind,
-        createdAt: new Date((document as any).created_at),
-        userId: (document as any).user_id,
+        created_at: new Date((document as any).created_at).toISOString(),
+        user_id: (document as any).user_id,
       };
 
       const documentHandler = documentHandlersByArtifactKind.find(

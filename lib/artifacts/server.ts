@@ -3,10 +3,11 @@ import { imageDocumentHandler } from '@/artifacts/image/server';
 import { sheetDocumentHandler } from '@/artifacts/sheet/server';
 import { textDocumentHandler } from '@/artifacts/text/server';
 import type { ArtifactKind } from '@/components/chatbot/artifact';
-import type { Document } from '../db/schema';
-import { saveDocument } from '../db/queries';
 import type { UIMessageStreamWriter } from 'ai';
 import type { ChatMessage } from '../types';
+import { saveDocument } from '@/db/queries';
+import type { Tables } from '@/types_db';
+type Document = Tables<'documents'>;
 
 export interface SaveDocumentProps {
   id: string;

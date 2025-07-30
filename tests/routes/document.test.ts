@@ -1,4 +1,4 @@
-import type { Document } from '@/lib/db/schema';
+import type { Document } from '@/types_db';
 import { generateUUID } from '@/lib/utils';
 import { expect, test } from '../fixtures';
 import { getMessageByErrorCode } from '@/lib/errors';

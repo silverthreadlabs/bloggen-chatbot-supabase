@@ -6,7 +6,8 @@ import type { requestSuggestions } from './ai/tools/request-suggestions';
 import type { InferUITool, UIMessage } from 'ai';
 
 import type { ArtifactKind } from '@/components/chatbot/artifact';
-import type { Suggestion } from './db/schema';
+import type { Tables } from '@/types_db';
+type Suggestion = Tables<'suggestions'>;
 
 export type DataPart = { type: 'append-message'; message: string };
 

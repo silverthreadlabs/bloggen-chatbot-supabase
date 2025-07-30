@@ -10,7 +10,7 @@ import {
 } from 'react';
 import useSWR, { useSWRConfig } from 'swr';
 import { useDebounceCallback, useWindowSize } from 'usehooks-ts';
-import type { Document, Vote } from '@/lib/db/schema';
+import type { Document, Vote } from '@/types_db';
 import { fetcher } from '@/lib/utils';
 import { MultimodalInput } from './multimodal-input';
 import { Toolbar } from './toolbar';
@@ -426,7 +426,7 @@ return documents[index].content ?? '';
                   ) : document ? (
                     <div className="text-sm text-muted-foreground">
                       {`Updated ${formatDistance(
-                        new Date(document.createdAt),
+                        new Date(document.created_at),
                         new Date(),
                         {
                           addSuffix: true,

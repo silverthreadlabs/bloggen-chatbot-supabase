@@ -10,7 +10,8 @@ import {
   RedoIcon,
   UndoIcon,
 } from '@/components/chatbot/icons';
-import type { Suggestion } from '@/lib/db/schema';
+import type { Tables } from '@/types_db';
+type Suggestion = Tables<'suggestions'>;
 import { toast } from 'sonner';
 import { getSuggestions } from '../actions';
 

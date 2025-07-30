@@ -8,7 +8,8 @@ import {
 import { createRoot } from 'react-dom/client';
 
 import { Suggestion as PreviewSuggestion } from '@/components/chatbot/suggestion';
-import type { Suggestion } from '@/lib/db/schema';
+import type { Tables } from '@/types_db';
+type Suggestion = Tables<'suggestions'>;
 import { ArtifactKind } from '@/components/chatbot/artifact';
 
 export interface UISuggestion extends Suggestion {
@@ -49,7 +50,7 @@ export function projectWithPositions(
   suggestions: Array<Suggestion>,
 ): Array<UISuggestion> {
   return suggestions.map((suggestion) => {
-    const positions = findPositionsInDoc(doc, suggestion.originalText);
+    const positions = findPositionsInDoc(doc, suggestion.original_text);
 
     if (!positions) {
       return {
@@ -105,7 +106,7 @@ export function createSuggestionWidget(
     const textTransaction = view.state.tr.replaceWith(
       suggestion.selectionStart,
       suggestion.selectionEnd,
-      state.schema.text(suggestion.suggestedText),
+      state.schema.text(suggestion.suggested_text),
     );
 
     textTransaction.setMeta('no-debounce', true);

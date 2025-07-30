@@ -1,4 +1,4 @@
-import { getChatById, getVotesByChatId, voteMessage } from '@/lib/db/queries';
+import { getChatById, getVotesByChatId, voteMessage } from '@/db/queries';
 import { ChatSDKError } from '@/lib/errors';
 
 export async function GET(request: Request) {

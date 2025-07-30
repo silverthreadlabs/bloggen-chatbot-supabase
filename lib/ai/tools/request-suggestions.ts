@@ -1,7 +1,8 @@
 import { z } from 'zod';
 import { streamObject, tool, type UIMessageStreamWriter } from 'ai';
-import { getDocumentById, saveSuggestions } from '@/lib/db/queries';
-import type { Suggestion } from '@/lib/db/schema';
+import { getDocumentById, saveSuggestions } from '@/db/queries';
+import type { Tables } from '@/types_db';
+type Suggestion = Tables<'suggestions'>;
 import { generateUUID } from '@/lib/utils';
 import { myProvider } from '../providers';
 import type { ChatMessage } from '@/lib/types';
@@ -49,14 +50,16 @@ export const requestSuggestions = ({
       });
 
       for await (const element of elementStream) {
-        // @ts-expect-error element type is not compatible with Suggestion, needs proper typing
-        const suggestion: Suggestion = {
-          originalText: element.originalSentence,
-          suggestedText: element.suggestedSentence,
+        const suggestion: Omit<Suggestion, 'userId' | 'createdAt' | 'documentCreatedAt'> = {
+          original_text: element.originalSentence,
+          suggested_text: element.suggestedSentence,
           description: element.description,
           id: generateUUID(),
-          documentId: documentId,
-          isResolved: false,
+          document_id: documentId,
+          is_resolved: false,
+          user_id: null,
+          created_at: new Date().toISOString(),
+          document_created_at: new Date().toISOString(),
         };
 
         dataStream.write({
@@ -74,9 +77,9 @@ export const requestSuggestions = ({
         await saveSuggestions({
           suggestions: suggestions.map((suggestion) => ({
             ...suggestion,
-            userId,
-            createdAt: new Date(document.created_at),
-            documentCreatedAt: new Date(document.created_at),
+            user_id: userId,
+            created_at: new Date(document.created_at).toISOString(),
+            document_created_at: new Date(document.created_at).toISOString(),
           })),
         });
       }

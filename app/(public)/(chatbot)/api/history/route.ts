@@ -1,5 +1,5 @@
 import type { NextRequest } from 'next/server';
-import { getChatsByUserId } from '@/lib/db/queries';
+import { getChatsByUserId } from '@/db/queries';
 import { ChatSDKError } from '@/lib/errors';
 import { createClient } from '@/utils/supabase/server';
 

@@ -59,14 +59,16 @@ const upsertPriceRecord = async (
 ) => {
   const priceData: Price = {
     id: price.id,
-    product_id: typeof price.product === 'string' ? price.product : '',
-    active: price.active,
-    currency: price.currency,
-    type: price.type,
+    product_id: typeof price.product === 'string' ? price.product : null,
+    active: price.active ?? null,
+    currency: price.currency ?? null,
+    type: price.type ?? null,
     unit_amount: price.unit_amount ?? null,
     interval: price.recurring?.interval ?? null,
     interval_count: price.recurring?.interval_count ?? null,
-    trial_period_days: price.recurring?.trial_period_days ?? TRIAL_PERIOD_DAYS
+    trial_period_days: price.recurring?.trial_period_days ?? null,
+    description: price.nickname ?? null, // or price.description ?? null if available
+    metadata: price.metadata ?? {},
   };
 
   const { error: upsertError } = await supabaseAdmin
@@ -250,7 +252,7 @@ const manageSubscriptionStatusChange = async (
     id: subscription.id,
     user_id: uuid,
     metadata: subscription.metadata,
-    status: subscription.status,
+    status: subscription.status as 'active' | 'trialing' | 'canceled' | 'incomplete' | 'incomplete_expired' | 'past_due' | 'unpaid',
     price_id: subscription.items.data[0].price.id,
     //TODO check quantity on subscription
     // @ts-ignore

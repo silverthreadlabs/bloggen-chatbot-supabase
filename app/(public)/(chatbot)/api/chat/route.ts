@@ -15,7 +15,7 @@ import {
   getMessagesByChatId,
   saveChat,
   saveMessages,
-} from '@/lib/db/queries';
+} from '@/db/queries';
 import { convertToUIMessages, generateUUID } from '@/lib/utils';
 import { generateTitleFromUserMessage } from '../../actions';
 import { createDocument } from '@/lib/ai/tools/create-document';

@@ -6,7 +6,7 @@ import type {
 } from 'ai';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import type { DBMessage, Document } from '@/lib/db/schema';
+import type { DBMessage, Document } from '@/types_db';
 import { ChatSDKError, type ErrorCode } from './errors';
 import type { ChatMessage, ChatTools, CustomUIDataTypes } from './types';
 import { formatISO } from 'date-fns';
@@ -81,7 +81,7 @@ export function getDocumentTimestampByIndex(
   if (!documents) return new Date();
   if (index > documents.length) return new Date();
 
-  return documents[index].createdAt;
+  return documents[index].created_at;
 }
 
 export function getTrailingMessageId({
@@ -103,8 +103,8 @@ export function sanitizeText(text: string) {
 export function convertToUIMessages(messages: DBMessage[]): ChatMessage[] {
   return messages.map((message) => {
     // Defensive: handle invalid dates
-    const rawDate = message.createdAt;
-    let createdAt: string = '';
+    const rawDate = message.created_at;
+    let createdAt: string = ''; 
     if (rawDate) {
       const dateObj = new Date(rawDate);
       if (!isNaN(dateObj.getTime())) {

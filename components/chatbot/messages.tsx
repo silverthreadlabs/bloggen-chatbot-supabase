@@ -1,7 +1,7 @@
 import { PreviewMessage, ThinkingMessage } from './message';
 import { Greeting } from './greeting';
 import { memo } from 'react';
-import type { Vote } from '@/lib/db/schema';
+import type { Vote } from '@/types_db';
 import equal from 'fast-deep-equal';
 import type { UseChatHelpers } from '@ai-sdk/react';
 import { motion } from 'framer-motion';
@@ -57,7 +57,7 @@ function PureMessages({
           isLoading={status === 'streaming' && messages.length - 1 === index}
           vote={
             Array.isArray(votes)
-              ? votes.find((vote) => vote.messageId === message.id)
+              ? votes.find((vote) => vote.message_id === message.id)
               : undefined
           }
           setMessages={setMessages}
